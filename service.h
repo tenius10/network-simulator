@@ -16,6 +16,16 @@ protected:
   short port_;
 
   Service(Host *host, int port) : host_(host), port_(port) {}
+
+public:
+  virtual ~Service();
+  short port(){ return port_; }
+
+  // transport layer로부터 packet을 수신한다.
+  virtual void receive(Packet* packet);
+  
+  // 애플리케이션 포트를 설정한다.
+  virtual void initialize(int port);
 };
 
 #endif

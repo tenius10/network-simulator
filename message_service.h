@@ -15,12 +15,21 @@ private:
   Address destAddress_;
   // 목적지 포트
   short destPort_;
+  // 출발지 포트
+  short srcPort_;
+
   MessageService(Host *host, short port, Address destAddress, short destPort)
       : Service(host, port), destAddress_(destAddress), destPort_(destPort) {}
 
 public:
   // 메시지를 전송한다
   void send(std::string message);
+
+  // 메시지를 수신한다
+  void receive(Packet* packet);
+
+  // 포트를 설정한다.
+  void initialize(int port);
 };
 
 #endif

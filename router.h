@@ -13,6 +13,9 @@ public:
 class Router : public Node {
 protected:
   std::vector<RoutingEntry> routingTable_;
+public:
+  virtual ~Router(){}
+  void send(Packet* packet);
 };
 
 #endif

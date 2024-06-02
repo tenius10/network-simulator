@@ -45,6 +45,10 @@ public:
     return str;
   }
 
+  std::string toString(){
+    return "packet (from: "+srcAddress_.toString()+", to: "+destAddress_.toString()+", "+std::to_string(data_.size())+" bytes)";
+  }
+
 private:
   Address srcAddress_;
   Address destAddress_;
