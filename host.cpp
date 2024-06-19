@@ -17,7 +17,7 @@ Host::~Host(){
 
 // 호스트와 설치된 서비스를 전부 초기화한다.
 void Host::initialize(){
-    // 서버 포트는 서비스측에서 설정
+    // 호스트 내의 서비스 포트 번호 설정
     int size=services_.size();
     for(int i=0;i<size;i++){
         services_[i]->initialize(nextPort_++);

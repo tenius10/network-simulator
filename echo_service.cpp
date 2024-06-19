@@ -15,5 +15,7 @@ void EchoService::receive(Packet* packet){
 
 // 포트를 설정한다.
 void EchoService::initialize(int port){
+    // EchoService의 포트는 3000으로 고정.
+    // 이 포트가 고정되어 있어야 클라이언트 측에서 서버에 요청을 보낼 수 있음.
     port_=3000;
 }
