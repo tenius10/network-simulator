@@ -21,12 +21,16 @@ private:
   MessageService(Host *host, short port, Address destAddress, short destPort)
       : Service(host, port), destAddress_(destAddress), destPort_(destPort) {}
 
+  std::string name(){ return "MessageService"; }
+  
 public:
+  ~MessageService(){}
+
   // 메시지를 전송한다
   void send(std::string message);
 
   // 메시지를 수신한다
-  void receive(Packet* packet);
+  void onReceive(Packet* packet);
 
   // 포트를 설정한다.
   void initialize(int port);

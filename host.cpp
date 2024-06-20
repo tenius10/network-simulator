@@ -39,12 +39,12 @@ void Host::send(Packet *packet){
 
         if(targetService!=nullptr){
             // 포트에 맞는 서비스가 있다면
-            cout<<"Host #"<<std::to_string(id())<<": received packet, destination port: "<<packet->destPort()<<"\n";
-            targetService->receive(packet);
+            log("received packet: "+packet->toString()+", forwarding to "+targetService->toString());
+            targetService->onReceive(packet);
         }
         else{
             // 포트에 맞는 서비스가 없다면
-            cout<<"Host #"<<std::to_string(id())<<": no service for "<<packet->toString()<<"\n";
+            log("no service for packet: "+packet->toString());
             delete packet;
         }
     }
@@ -53,10 +53,11 @@ void Host::send(Packet *packet){
         if(links_.size()>0){    
             string srcAddr=packet->srcAddress().toString();
             string destAddr=packet->destAddress().toString();
-            cout<<"Host #"<<std::to_string(id())<<": sending "<<packet->toString()<<"\n";
+
+            log("sending packet: "+packet->toString());
 
             int randIdx=rand()%links_.size();
-            links_[randIdx]->flow(this, packet);
+            links_[randIdx]->onReceive(this, packet);
         }
     }
 

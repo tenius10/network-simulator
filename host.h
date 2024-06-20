@@ -17,6 +17,8 @@ private:
   std::vector<Service *> services_;
 
   short nextPort_=1000;
+
+  std::string name(){ return "Host"; }
   
 public:
   Address address() { return address_; }

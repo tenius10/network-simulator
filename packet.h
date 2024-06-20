@@ -2,10 +2,11 @@
 #define PACKET_H
 
 #include "address.h"
+#include "object.h"
 #include <string>
 #include <vector>
 
-class Packet {
+class Packet : public Object {
 public:
   Packet(Address srcAddress, Address destAddress, short srcPort, short destPort,
          std::string data)
@@ -45,16 +46,14 @@ public:
     return str;
   }
 
-  std::string toString(){
-    return "packet (from: "+srcAddress_.toString()+", to: "+destAddress_.toString()+", "+std::to_string(data_.size())+" bytes)";
-  }
-
 private:
   Address srcAddress_;
   Address destAddress_;
   short srcPort_;
   short destPort_;
   std::vector<char> data_;
+
+  std::string name(){ return "Packet"; }
 };
 
 #endif

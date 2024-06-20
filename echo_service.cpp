@@ -2,9 +2,9 @@
 #include <string>
 #include "echo_service.h"
 
-void EchoService::receive(Packet* packet){
+void EchoService::onReceive(Packet* packet){
     // 패킷을 받아서 출력하고 다시 돌려보냄
-    std::cout<<"EchoService: received \""<<packet->dataString()<<"\" from "<<packet->srcAddress().toString()<<":"<<std::to_string(packet->srcPort())<<", send reply with same data\n";
+    log("received \""+packet->dataString()+"\" from "+packet->srcAddress().toString()+":"+std::to_string(packet->srcPort())+", send reply with same data");
     
     Packet* newPacket=new Packet(packet->destAddress(), packet->srcAddress(), packet->destPort(), packet->srcPort(), packet->data());
     // pakcet을 전달받은 서비스 측에서 메모리 해제

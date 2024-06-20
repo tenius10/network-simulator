@@ -5,7 +5,7 @@
 
 class Host;
 
-class Service {
+class Service : public Object {
   friend class ServiceInstaller;
 
 protected:
@@ -18,11 +18,12 @@ protected:
   Service(Host *host, int port) : host_(host), port_(port) {}
 
 public:
-  virtual ~Service();
+  virtual ~Service(){}
+
   short port(){ return port_; }
 
   // transport layer로부터 packet을 수신한다.
-  virtual void receive(Packet* packet);
+  virtual void onReceive(Packet* packet);
   
   // 애플리케이션 포트를 설정한다.
   virtual void initialize(int port);

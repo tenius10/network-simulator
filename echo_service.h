@@ -15,9 +15,11 @@ private:
   short srcPort_;
 
   EchoService(Host *host, short port) : Service(host, port) {}
-
-public: 
-  void receive(Packet* packet);
+  
+  std::string name(){ return "EchoService"; }
+  
+public:
+  void onReceive(Packet* packet);
 
   // 포트를 설정한다.
   void initialize(int port);

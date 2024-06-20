@@ -15,7 +15,6 @@ protected:
   std::vector<RoutingEntry> routingTable_;
 public:
   virtual ~Router(){}
-  void send(Packet* packet);
 };
 
 #endif

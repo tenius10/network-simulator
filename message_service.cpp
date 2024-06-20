@@ -7,8 +7,8 @@ void MessageService::send(std::string message){
     host_->send(packet);   
 }
 
-void MessageService::receive(Packet* packet){
-    std::cout<<"MessageService: received \""<<packet->dataString()<<"\" from "<<packet->srcAddress().toString()<<":"<<std::to_string(packet->srcPort())<<"\n";
+void MessageService::onReceive(Packet* packet){
+    log("received \""+packet->dataString()+"\" from "+packet->srcAddress().toString()+":"+std::to_string(packet->srcPort()));
     delete packet;
 }
 
